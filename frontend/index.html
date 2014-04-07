@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Yelp Recommendor</title>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+<script>
+
+$(document).ready(function() {
+$( "#submit" ).click(function() {
+
+$('#list').html('<img src="ajax_loader.gif"> Loading...');
+
+var username=$("#name").val();
+$.ajax({
+url: 'http://localhost:8080/generic/reccomend?name='+username,
+success: function(data){
+
+$('#list').html(data);
+}
+})
+
+});
+});
+</script>	
+<style>
+img{
+    max-width: 17% !important;
+    width: 17% !important;
+    padding: 5px;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+    min-height: 68px !important;
+}
+
+.ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow{
+    padding-right: 10% !important;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+    padding-left: 25% !important;
+}
+</style>
+</head>
+<body>
+    <label for="name" class="select">Choose User:</label>
+<select name="name" id="name" data-mini="true">
+   <option value="">Christine</option>
+   <option value="rush">Denis</option>
+   <option value="express">David</option>
+   </select> 
+   <button type="submit" id="submit"/>submit</button>
+   <div id="list"></div>
+</body>
+</html>
